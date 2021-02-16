@@ -1,0 +1,227 @@
+{% extends "Profesional/base.html" %}
+{% load static%}
+
+
+{% block titulo %}ServiHogar | Perfil Profesional {% endblock %}
+{% block css %}
+
+<link href="{% static 'Login/Profesional/css/PerfilProfesionalCss.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+
+
+
+{% block content%}
+
+
+<section class="content">
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-3">
+
+                <div class="card card-primary card-outline">
+
+                    <div class="card-body box-profile">
+                
+                        <h3 class="profile-username text-center" id="NombreUsuario"></h3>
+
+                        <ul class="list-group list-group-unbordered my-5">
+
+                            <li class="list-group-item">
+                                <b>Trabajos Realizados</b> <a class="float-right " id="contador"></a>
+                            </li>
+                            
+                            <li class="list-group-item">
+                                <b>Valoracion</b> <a class="float-right"><span class="rateit" id="valoracion" data-rateit-resetable="false" data-rateit-readonly="true"></span></a>
+                            </li>
+                      
+                        </ul>
+
+                    </div>
+
+                </div>
+        
+                <div class="card card-primary">
+
+                    <div class="card-header">
+                      <h3 class="card-title">Datos</h3>
+                    </div>
+      
+                    <div class="card-body">
+
+                        <strong><i class="fas fa-book mr-1"></i> Nombre y Apellido</strong>
+                        <p class="text-muted" id="NombreyApellido"></p>
+                        <hr>
+
+
+                        <strong><i class="far fa-file-alt mr-1"></i> Email</strong>
+                        <p class="text-muted" id="Email"></p>
+                        <hr>
+
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Direccion</strong>
+                        <p class="text-muted" id="Direccion"></p>
+                        <hr>
+
+
+                        <strong><i class="fas fa-pencil-alt mr-1"></i> Habilidades</strong>
+                        <p class="text-muted">
+                        <span class="tag tag-danger" id="Permisos"></span>
+                        </p>
+
+                    </div>
+         
+                </div>
+            
+            </div>
+
+
+            <div class="col-md-9">
+
+                <div class="card">
+
+                      <div class="card-header p-2">
+
+                        <ul class="nav nav-pills">
+                          <li class="nav-item"><a class="nav-link active" href="#EnProceso" data-toggle="tab">En Proceso</a></li>
+                          <li class="nav-item"><a class="nav-link" href="#Finalizados" data-toggle="tab">Finalizados</a></li>
+                          <li class="nav-item"><a class="nav-link" href="#grafico" data-toggle="tab">Graficos</a></li>
+                        </ul>
+
+                      </div><!-- /.card-header -->
+
+                      <div class="card-body">
+
+                          <div class="tab-content TablaEstilo">
+
+                              <!-- tab-pane1 EnProceso-->
+                              <div class="tab-pane active" id="EnProceso">
+
+                                <table class="table table-bordered " id="dataTrabajosEnProceso">
+
+                                  <thead>
+
+                                      <tr class="enunciadoTabla">
+
+                                        <th  scope="col" >id</th>
+                                        <th scope="col" >Tipo de Servicio</th>
+                                        <th  scope="col" >Fecha De Ejecucion</th>
+                                        <th scope="col" >Nombre y Apellido</th>
+                                        <th  scope="col" >Direccion </th>
+                                        <th scope="col" >Dejar</th>
+                                        <th scope="col" >Completado</th>
+                                        
+                                      </tr>
+
+                                  </thead>
+
+                                </table>
+
+                              </div>
+                              <!-- /.tab-pane1 -->
+
+
+                              <!-- tab-pane2 Finalizados-->
+                              <div class="tab-pane" id="Finalizados">
+
+                                <table class="table table-bordered dt-responsive nowrap" style="width:100%" id="dataTrabajosFinalizados">
+                                  
+                                  <thead>
+                                      <tr class="enunciadoTabla">
+                                        
+                                        <th  scope="col" >id</th>
+                                        <th scope="col" >Tipo de Servicio</th>
+                                        <th  scope="col" >Fecha De Ejecucion</th>
+                                        <th scope="col" >Nombre y Apellido</th>
+                                        <th  scope="col">Direccion </th>
+                                        <th scope="col" >Valorar</th>
+                                        
+                                      </tr>
+                                  </thead>
+
+                                </table>
+
+                              </div>
+                              <!-- /.tab-pane2 -->
+                
+
+                          </div>
+                          <!-- /.tab-content -->
+
+                      </div><!-- /.card-body -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+   <!-- valorarProfModal -->
+<div class="modal fade" id="valorarClienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form method="POST" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="modal-dialog" role="document">
+     
+      <div class="modal-content">
+      
+        <div class="modal-header">
+          <h5 class="modal-title" id="EnunciadoModal"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row justify-content-center">
+
+              <div class="rateit" id="rate" data-rateit-resetable="false"></div>
+
+            </div>
+            
+
+            <div class="row my-3"><label>Reseña:</label>{{form.resegna}}</div>
+            
+            <div class="container">
+              <p class="text-center parrafoError my-5"></p>
+            </div>
+            {{form.score}}
+            {{form.id}}
+            
+          </div>
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-outline-primary" >Enviar</button>
+        
+        </div>
+        
+        
+      </div>
+   
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}
+
+
+
+
+{% block js %}
+
+    <!-- Mi Funcion Ajax -->
+    <script src="{% static 'Login/Profesional/js/perfil_prof_scripts.js'%}"></script>
+
+{% endblock %}

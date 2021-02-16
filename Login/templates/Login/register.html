@@ -1,0 +1,258 @@
+{% extends 'Login/baseBasicas.html'%}
+{% load static %}
+
+{% block css %}
+<style>
+  .yatTengoCuenta{
+    text-decoration: none !important;
+
+  }
+</style>
+{% endblock %}
+
+
+{% block titulo %} ServiHogar | Registrar {% endblock %}
+
+{% block contentPrincipal %}
+<body class="hold-transition register-page">
+
+  <div class="container m-5">
+    
+    <div class="register-logo">
+        <a href="{% url 'Login:index'%}"><b>Registro|</b>ServiHogar</a>
+    </div>
+
+
+    <div class="card p-5 "> 
+
+    
+        <div class="card-body register-card-body">
+              
+            <p class="login-box-msg">Registrar Usuario</p>
+              
+              <form>
+                {% csrf_token %}
+                
+
+                  <!--Username -->
+                  <div class="input-group mb-3">
+                    {{form.username}}
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="icofont-user-alt-3"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Email -->
+                  <div class="input-group mb-3">
+                    {{form.email}}
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="icofont-email"></span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!--Pass -->
+                  <div class=" input-group mb-3">
+                    <input type="password"  placeholder="Contrasena" class="form-control" name="password1">
+
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="icofont-lock"></span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!--Confirm Pass -->
+                  <div class="input-group mb-3">
+                    
+                    <input type="password"  placeholder="Verifica la Contrasena" class="form-control" name="password2">
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="icofont-lock"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--First Name -->
+                  <div class="input-group mb-3">
+                    {{form.first_name}}
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="icofont-paper-clip"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--Last Name -->
+                  <div class="input-group mb-3">
+                    {{form.last_name}}
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="icofont-paper-clip"></span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                
+                  
+              
+                  <!--Direccion -->
+                  <div class="container">
+
+                      <p class="login-box-msg">Direccion:</p>
+
+                      <!--Calles -->
+                      <div class="row justify-content-center">
+                        
+                        <div class="col-md-3 ">{{form.callePrincipal}} </div>
+                          
+                        <span style="font-size:25px;font-family: 'Times New Roman';"> / </span> 
+                  
+                        <div class="col-md-3 ">{{form.entreCalle1}} </div> 
+                      
+                        
+                        <span style="font-size:25px;font-family: 'Times New Roman';" >y / </span>
+                        
+                        <div class="col-md-3 ">{{form.entreCalle2}}</div> 
+                  
+                        
+                      
+                      </div>
+                        
+                      <!--No Provincia Municipio -->
+                      <div class="row my-4 justify-content-center">
+                        
+                        <div class="col-lg-4 mt-2 ">{{form.numeroDeLaCasa}} </div>
+                        <div class="col-lg-4 mt-2 input-group">{{form.provincia}} </div>
+                        <div class="col-lg-4 mt-2 input-group">{{form.municipio}} </div>
+                    
+                      </div>
+
+                      <p class="login-box-msg my-5">Ejemplo: "(Provincia), (Municipio), Calle (Calle Principal) / Calle (EntreCalle1) y Calle (EntreCalle2)  #:Numero"</p>
+
+                  </div>
+                  
+               
+                  <!--Botones -->
+                  <div class="row my-3">
+
+                        <!--Link "Ya tengo una cuenta" -->
+                        <div class="col-8">
+                  
+                            <a class="yatTengoCuenta" href="{% url 'Login:login'%}">Ya tengo una cuenta (Iniciar Sesion)</a>
+                    
+                        </div>
+
+                        <!--Boton Registrar -->
+                        <div class="col-4">
+                          
+                          <button type="submit" class="btn btn-outline-primary btn-block">Registrar</button>
+                        
+                        </div>
+                  
+                  </div>
+
+
+                  <!--Parrafo Error -->
+                  <div class="form-group my-5 p-0">
+  
+                      <p class="parrafoError m-5"></p>   
+
+                  </div>
+
+              </form>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+{% block js %}
+
+<script>
+
+  var id = 0
+  
+  //Le aplicamos al select provincia la libreria select2
+  $("Select[name='provincia']").select2({
+      language:'es',
+      placeholder: 'Provincia',
+      minimumInputLength: 2,
+  
+  })
+  
+  //En esta funcion capturamos la provincia que se ha seleccionado
+  $('select[name="provincia"]').on('change',function(){
+      id = $(this).val()
+  
+      })
+  
+  
+  //Le aplicamos al select municipio la libreria select2 y configuramos ajax para cargar sus datos
+  $("Select[name='municipio']").select2({
+      language:'es',
+      ajax: {
+  
+                url: window.location.pathname,
+                type: "POST",
+                data: function (params) {
+                            var queryParameters = {
+                            term: params.term,
+                            'id':id,
+                            'action':'autocomplete',
+                            }
+  
+                            return queryParameters;
+                },
+  
+                processResults: function (data) {
+                    return {results: data};
+                },
+            
+                
+            },
+      
+      placeholder: 'Municipio',
+      minimumInputLength: 2,
+  
+  })
+  
+  </script>
+{% endblock %}
+
+
+
+
+{% block ajax %}
+
+<script>
+
+    //Ajax para el envio de datos a nuestra vista
+    $("form").on("submit",function(e){
+
+        e.preventDefault();
+        var parametros = new FormData(this) 
+            parametros.append('action','registrar')
+            
+        enviar_con_ajax(window.location.pathname,parametros,'Esta a punto de crear un registro',"parrafo",function(){
+            location.href="{{url_ok}}"
+        })
+
+    })
+
+    
+</script>
+
+{% endblock %}

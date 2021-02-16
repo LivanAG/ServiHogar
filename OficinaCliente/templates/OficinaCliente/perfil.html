@@ -1,0 +1,470 @@
+{% extends "OficinaCliente/base.html" %}
+
+{% load static%}
+
+
+
+{% block css %}
+
+<link href="{% static 'Login/OficinaCliente/css/perfilCliente.css' %}" rel="stylesheet">
+
+<style>
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: rgb(0, 0, 0) !important;
+  background-color: #ffc451 !important;
+}
+
+.nav-pills .nav-link:not(.active):hover {
+  color: #ffc451 !important;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #ffc451 !important;
+  border-color: #ffc451 !important;
+}
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #000000;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+
+.page-link:hover {
+  z-index: 2;
+  color:#ffc451;
+  text-decoration: none;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.page-link:focus {
+  z-index: 3;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(109, 86, 23, 0.25);
+}
+
+.btn-warning {
+  color: #212529;
+  background-color: #ffc451;
+  border-color: #ffc451;
+}
+
+.btn-warning:hover {
+  color: #212529;
+  background-color:#ffba2f;
+  border-color: #ffc248;
+}
+
+
+</style>
+
+{% endblock %}
+
+
+{% block titulo %}ServiHogar | Perfil {% endblock %}
+
+{%block content %}
+
+
+  
+<!-- ======= Seccion Datos del Usuario ======= --> 
+<section>
+    
+      <div class="container">
+
+            <div class="section-title">
+              <h2>Datos de Perfil</h2>
+            </div>
+        
+  
+              <div class="row">
+                
+                <div class="col-md-12">
+                  <div class="card card-user">
+
+                    <div class="card-header">
+                      <h5 class="card-title">Datos:</h5>
+                    </div>
+
+                    <div class="card-body">
+
+                      <form>
+
+                            <!-- CantidadDeTrabajos/Username/Email -->
+                            <div class="row">
+                              
+                              <!-- CantidadDeTrabajos -->
+                              <div class="col-md-5 pr-1">
+                                <div class="form-group">
+                                  <label>Cantidad de Trabajos con nosotros </label>
+                                  <input type="text" class="form-control" disabled="" id="contador" placeholder="Company" value="">
+                                </div>
+                              </div>
+
+                              <!-- Username -->
+                              <div class="col-md-3 px-1">
+                                <div class="form-group">
+                                  <label>Usuario</label>
+                                  <input type="text" class="form-control" id="username" disabled="" placeholder="Username" value="">
+                                </div>
+                              </div>
+
+                              <!-- Email -->
+                              <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Correo Electronico</label>
+                                  <input type="email" class="form-control" disabled=""  id="Email" placeholder="Email" value="">
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Nombre/Apellido -->
+                            <div class="row">
+
+                                <!-- Nombre -->
+                                <div class="col-md-6 pr-1">
+                                  <div class="form-group">
+                                    <label>Nombre </label>
+                                    <input type="text" class="form-control" disabled="" id="Nombre" placeholder="Company" value="">
+                                  </div>
+                                </div>
+
+                                <!-- Apellido -->
+                                <div class="col-md-6 pl-1">
+                                  <div class="form-group">
+                                    <label>Apellido </label>
+                                    <input type="text" class="form-control" disabled="" id="Apellido" placeholder="Last Name" value="">
+                                  </div>
+                                </div>
+
+                            </div>
+
+
+                            <!-- Direccion -->
+                            <div class="row">
+
+                              <!-- Direccion -->
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>Direccion</label>
+                                  <input type="text" class="form-control" disabled="" id="Direccion" placeholder="Home Address" value="">
+                                </div>
+                              </div>
+
+                            </div>
+
+                            <!-- Provincia,Municipio,Valoracion -->
+                            <div class="row">
+
+                              <!-- Provincia -->
+                              <div class="col-md-4 pr-1">
+                                <div class="form-group">
+                                  <label>Provincia</label>
+                                  <input type="text" class="form-control"  id="Provincia" disabled="" placeholder="Provincia" value="">
+                                </div>
+                              </div>
+
+                              <!-- Municipio -->
+                              <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                  <label>Municipio</label>
+                                  <input type="text" class="form-control"  id="Municipio" disabled="" placeholder="Municipio" value="">
+                                </div>
+                              </div>
+
+                              <!-- Valoracion -->
+                              <div class="col-md-4 pl-1">
+                                <div class="form-group">
+                                  <label>Valoracion </label>
+                                  
+                                  <div class="row ml-5"><span class="rateit" id="valoracion" data-rateit-resetable="false" data-rateit-readonly="true"></span></div>
+
+                                </div>
+                              </div>
+                            </div>
+
+
+                             <!-- Resegna de la Empresa -->
+                             <div>
+
+                                <p id="Resegna"></p>
+                                <div class="row justify-content-center"><span class="rateit" id="ValoracionEmpresa"  data-rateit-resetable="false" data-rateit-value="2.5" data-rateit-readonly="true" style="display: none;"></span></div>
+                              
+                            </div>
+                      
+                            <!--Botones -->
+                            <div class="row my-4">
+
+                              <div class="update ml-auto mr-auto">
+                                
+                                <a href="{% url 'OficinaCliente:editarCliente'%}" class="btn  btn-warning btn-round" >Editar Datos</a>
+                                <a href="{% url 'OficinaCliente:pass'%}" type="submit" class="btn btn-warning btn-round " >Editar Contraseña</a>
+      
+                              </div>
+
+                            </div>
+
+                      </form>
+
+                    </div>
+
+                  </div>
+                </div>
+              
+            </div>
+    
+       
+      </div>
+
+</section>
+<!-- ======= Seccion Datos del Usuario ======= --> 
+ 
+
+<!-- ======= Seccion Resegna ======= -->
+
+<section  id='sectionResegna' class=" resegna p-5">
+
+
+      <div class="container"   data-aos="zoom-in">
+      
+        <div class="section-title">
+          <h2>Valora Nuestro Trabajo</h2>
+        </div>
+
+          <form id="resegnaform">
+
+                <h3>Dejanos tu opinion acerca de nuestra plataforma</h3>
+                
+                <div class="row my-3"><label>Reseña:</label>{{resegnaForm.mensaje}}</div>
+                        
+                <div class="rateit" id="rateResegnaEmpresa" data-rateit-value="0" data-rateit-resetable="false"></div>
+                
+                {{resegnaForm.valoracion}}
+                
+                {{resegnaForm.id}}
+
+                <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    Gracias por ayudarnos a crecer!
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+
+                <input type="submit" class="btn btn-outline-warning" name="dale" value="OK">
+            
+          </form>
+
+     </div>
+
+
+</section>
+  
+  <!-- ======= Seccion Resegna ======= -->
+  
+
+<!-- ======= Seccion Tablas de ordenes ======= -->
+<section>
+
+  <div class="container TablaEstilo">
+
+    <div class="section-title">
+      <h2>Ordenes Pendientes, En Proceso y Finalizadas</h2>
+    </div>
+
+    <div class="card">
+
+          <div class="card-header p-2">
+              <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link active" href="#Activas" data-toggle="tab">Ordenes Activas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#Finalizados" data-toggle="tab">Ordenes Finalizadas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+              </ul>
+          </div><!-- /.card-header -->
+
+          <div class="card-body">
+
+                <div class="tab-content TablaEstilo">
+
+                      <div class="tab-pane active" id="Activas">
+
+                          <table class="table table-bordered" id="dataActivas">
+                            
+                              <thead>
+                                <tr class="enunciadoTabla">
+                                  <th  scope="col" >#</th>
+                                  <th scope="col" >Tipo de Servicio</th>
+                                  <th   scope="col" >Fecha de Entrada</th>
+                                  <th  scope="col" >Fecha De Ejecucion</th>
+                                  <th scope="col" >Estado</th>
+                                  <th scope="col" >Profesional </th>
+                                  <th scope="col" >Finalizar Orden</th>
+                                  <th scope="col" >Eliminar </th>
+                                </tr>
+                              </thead>
+                  
+                          </table>
+
+                      </div>
+                      <!-- /.tab-pane -->
+                      
+                      <div class="tab-pane" id="Finalizados">
+
+                          <table class="table table-bordered" id="dataFinalizadas">
+                              <thead>
+                                <tr class="enunciadoTabla">
+                                  <th  scope="col" style="width: 1%; ">#</th>
+                                  <th scope="col" style="width: 15%; ">Tipo de Servicio</th>
+                                  <th   scope="col" style="width: 15%; ">Fecha de Entrada</th>
+                                  <th  scope="col" style="width: 18%;">Fecha De Ejecucion</th>
+                                  <th scope="col" style="width: 5%;">Valorar</th>
+                        
+                                </tr>
+                              </thead>
+                  
+                          
+                          </table>
+
+                      </div>
+                      <!-- /.tab-pane -->
+
+                </div>
+                <!-- /.tab-content -->
+
+          </div><!-- /.card-body -->
+
+          <div class="card-footer clearfix">
+            
+          </div>
+
+    </div>
+    <!-- /.card -->
+  </div>
+
+</section>
+<!-- ======= Seccion Tablas de ordenes ======= -->
+
+
+
+
+
+<!-- ======= Modals ======= -->
+
+ <!-- profInfoModal -->
+<div class="modal fade" id="profInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Profesional</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+            
+          
+              <h3 class="profile-username text-center nombre"></h3>
+          
+              <p class="text-muted text-center">Software Engineer</p>
+           
+              <ul class="list-group list-group-unbordered mb-3">
+                
+                <li class="list-group-item">
+                  <b>Trabajos Realizados</b> <a class="float-right trabajos"></a>
+                </li>
+              </ul>
+          
+            </div>
+            <!-- /.card-body -->
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Ok</button>
+     
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ <!-- valorarProfModal -->
+ <div class="modal fade" id="valorarProfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form method="POST" action="." id="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="modal-dialog" role="document">
+     
+      <div class="modal-content">
+      
+        <div class="modal-header">
+          <h5 class="modal-title" id="EnunciadoModal"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row justify-content-center">
+
+              <div class="rateit" id="rate" data-rateit-resetable="false"></div>
+
+            </div>
+            
+
+            <div class="row my-3"><label>Reseña:</label>{{form.resegna}}</div>
+            
+            
+            {{form.score}}
+            {{form.id}}
+            
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-outline-primary" >Enviar</button>
+        
+        </div>
+        
+        
+      </div>
+   
+    </div>
+  </form>
+</div>
+
+
+ <!-- ======= Modals ======= -->      
+
+{% endblock%}
+
+
+
+
+
+{% block js %}
+<script src="{% static 'Login/OficinaCliente/js/perfil_scripts.js' %}"></script>
+
+{% endblock%}
+
+
+  

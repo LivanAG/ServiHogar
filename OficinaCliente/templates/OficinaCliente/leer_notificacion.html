@@ -1,0 +1,77 @@
+{% extends 'Login/baseBasicas.html'%}
+{% load static %}
+
+
+{% block css %}
+<style>
+  textarea {
+  resize: none;
+
+}
+</style>
+{% endblock %}
+
+
+
+{% block titulo %} ServiHogar | Leer Notificacion  {% endblock %}
+
+{% block contentPrincipal %}
+<body class="hold-transition register-page">
+
+    <div class="container my-5">
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+          <h3 class="card-title">Leer Notificacion </h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <div class="mailbox-read-info">
+            <h5 id="titulo">Asunto de la notificacion </h5>
+            <h6>De: Soporte de ServiHogar
+              <span id="fecha" class="mailbox-read-time float-right"></span></h6>
+          </div>
+          <!-- /.mailbox-read-info -->
+          <div class="mailbox-controls with-border text-center">
+          
+        
+          </div>
+          <!-- /.mailbox-controls -->
+          <div class="mailbox-read-message">
+            <p id="mensaje"></p>
+            
+          </div>
+          <!-- /.mailbox-read-message -->
+        </div>
+        <!-- /.card-body -->
+  
+        <!-- /.card-footer -->
+        <div class="card-footer">
+          
+            <a href="{% url 'OficinaCliente:buzon'%}" type="button" class="btn btn-default"><i class="fas fa-reply"></i> Volver</a>
+
+        </div>
+        <!-- /.card-footer -->
+      </div>
+
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+{% block js %}
+<script src="{% static 'Login/OficinaCliente/js/leer_notificacion_scripts.js' %}"></script>
+
+{% endblock %}
+
+
+
+
+
+{% block ajax %}
+
+
+{% endblock %}

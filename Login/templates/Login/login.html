@@ -1,0 +1,93 @@
+{% extends 'Login/baseBasicas.html'%}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+
+
+{% block titulo %} ServiHogar | Login  {% endblock %}
+
+{% block enunciado %} Iniciar Sesion {% endblock %}
+
+
+      {% block content %}
+      
+      <form action="." method="POST">
+          {% csrf_token %}
+
+        
+        <div class="input-group mb-3">
+           
+            {{form.username}}
+            
+            <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+            </div>
+        
+        </div>
+
+
+        <div class="input-group mb-3">
+            
+            {{form.password}}
+            
+            <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+        <div class="mt-4">
+
+        
+          <p class="mb-3 ml-3">
+            <a href="{% url 'Login:reset1'%}">Olvidaste tu Contraseña</a>
+          </p>
+
+          <a href="{% url 'Login:index'%}" class="btn btn-outline-primary ml-3"> Volver</a>
+        
+          <button type="submit" class="btn btn-outline-primary mr-3 float-right">Enviar</button>
+
+        
+        </div>
+
+       
+        
+        <div class="form-group m-3">
+                    
+              {% if form.errors %}
+              {% for field in form %}
+                  {% for error in field.errors %}
+                      <div class="alert alert-danger">
+                      <strong>{{ error|escape }}</strong>
+                      </div>
+                  {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+                  <div class="alert alert-danger">
+                      <strong>{{ error|escape }}</strong>
+                  </div>
+              {% endfor %}
+          {% endif %}
+      
+        </div>
+      
+      </form>
+
+      {% endblock %}
+
+
+
+{% block ajax %}
+<!--Esta vista no usa ajax !!!!!!!! -->
+{% endblock %}
+
+
+{% block js %}
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'Login/baseBasicas.html'%}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+
+{% block titulo %}ServiHogar | Cambiar Contraseña {% endblock %}
+
+{% block enunciado %} Cambiar Contrasena {% endblock %}
+
+
+
+{% block content %}
+
+
+  <form>
+  {% csrf_token %}
+    
+      {% for i in form %}
+      <div class="row m-3">
+        {{i}}
+      </div>
+      {% endfor%}
+
+
+      <a href="{{url_reverse}}" class="btn btn-outline-primary ml-3"> Volver</a>
+      <input type="submit" class="btn btn-outline-primary float-right mr-3" value="Enviar">
+
+
+  </form>
+
+{% endblock%}    
+
+
+
+{% block ajax %}
+
+<script>
+
+  $("form").on("submit",function(e){
+  
+      e.preventDefault();
+      var parametros = new FormData(this) 
+      
+      enviar_con_ajax(window.location.pathname,parametros,'Esta a punto de cambiar tu contraseña',"parrafo",function(){
+          location.href="{{url_ok}}"
+      })
+      
+  })
+  
+</script>
+
+{% endblock %}         
+            
+
+{% block js %}
+{% endblock %}

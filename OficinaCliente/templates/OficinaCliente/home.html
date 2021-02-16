@@ -1,0 +1,389 @@
+{% extends "OficinaCliente/base.html" %}
+{% load static%}
+
+{% block css %}
+<style>
+  
+.contact .email-form .form-group {
+  padding-bottom: 8px;
+}
+
+.contact .email-form .validate {
+  display: none;
+  color: red;
+  margin: 0 0 15px 0;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.contact .email-form .error-message {
+  display: none;
+  color: #fff;
+  background: #ed3c0d;
+  text-align: left;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.contact .email-form .error-message br + br {
+  margin-top: 25px;
+}
+
+.contact .email-form .sent-message {
+  display: none;
+  color: #fff;
+  background: #18d26e;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.contact .email-form .loading {
+  display: none;
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+}
+
+.contact .email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #18d26e;
+  border-top-color: #eee;
+  -webkit-animation: animate-loading 1s linear infinite;
+  animation: animate-loading 1s linear infinite;
+}
+
+.contact .email-form input, .contact .email-form textarea {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.contact .email-form input:focus, .contact .email-form textarea:focus {
+  border-color: #ffc451;
+}
+
+.contact .email-form input {
+  height: 44px;
+}
+
+.contact .email-form textarea {
+  padding: 10px 12px;
+  resize: none;
+}
+
+.contact .email-form button[type="submit"] {
+  background: #ffc451;
+  border: 0;
+  padding: 10px 24px;
+  color: #151515;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+
+.contact .email-form button[type="submit"]:hover {
+  background: #ffcd6b;
+}
+
+
+
+</style>
+{% endblock %}
+
+{% block titulo %}ServiHogar | Home {% endblock %}
+
+{% block banner%}
+
+<!-- ======= Seccion Banner ======= -->
+
+<section id="hero" class="d-flex align-items-center justify-content-center">
+
+  <div class="container" data-aos="fade-up">
+
+    <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+      <div class="col-xl-6 col-lg-8">
+        <h1>ServiHogar<span>.</span></h1>
+        <h2>Gane comodidad, seguridad y buenos precios desde la comodidad de su casa!</h2>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ======= Seccion Banner ======= -->
+
+{%endblock%}
+
+
+
+{% block breadcrumbs %}
+ <!-- ======= Eliminamos el breadcrumbs de este template ======= -->
+{%endblock%}
+
+
+{% block content%}
+
+<!-- ======= Seccion Acerca de ======= -->
+
+<section id="about" class="about">
+
+<div class="container" data-aos="fade-up">
+
+    <div class="row">
+
+        <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+          <img src="{% static 'Login/OficinaCliente/img/about.jpg' %}" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
+            
+            <h3>Ya esta en su oficina de cliente</h3>
+            
+            <p class="font-italic">En esta puede llevar a cabo una serie de acciones</p>
+            
+            <ul>
+              <li><i class="icofont-tack-pin"></i> Tiene la pestaña "Servicios", desde la cual usted puede encargar servicios para su hogar</li>
+              <li><i class="icofont-tack-pin"></i> Tiene la pestaña "Quiero ser un Profesional", si usted esta interesado en unirse a nuestra red de profesionales, en esta pestaña encontrara toda la informacion necesaria para esto</li>
+              <li><i class="icofont-tack-pin"></i> Tiene la pestaña "Perfil", desde la cual usted tiene acceso a todos sus datos en la plataforma, a sus ordenes(Pendientes,En Proceso,Finalizadas)</li>
+            </ul>
+
+            <p>
+              Y por supuesto tiene esta pestaña Home, la cual tiene como objetivo explicar todo lo que usted necesita saber acerca del funcionamiento de nuestra plataforma para conseguir que su experiencia sea lo mas satisfactoria posible
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- Seccion Acerca de -->
+
+
+
+
+<!-- ======= Seccion Testimonios ======= -->
+
+<section id="testimonials" class="testimonials">
+
+<div class="container" data-aos="zoom-in">
+
+  <div class="owl-carousel testimonials-carousel">
+
+    {% for i in lista_testimonios%}
+    <div class="testimonial-item">
+
+      <h3 class="mb-3">{{i.nombre}} {{i.apellido}} </h3>
+      <span class="rateit text-center" id="valoracion" data-rateit-value="{{i.valoracion}}" data-rateit-readonly="true" data-rateit-resetable="false"></span>
+
+      <h4></h4>
+      
+      <p>
+          <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+          " {{i.mensaje}} "
+          <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+      </p>
+
+  </div>
+
+    {% endfor %}
+
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- ======= Seccion Testimonios ======= -->
+
+
+
+
+<!-- =======  Seccion como funciona ======= -->
+
+<section id="counts" class="counts ">
+
+    <div class="container" data-aos="fade-up">
+
+      <div class="row no-gutters">
+
+        <div class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" data-aos="fade-right" data-aos-delay="100"></div>
+        
+        <!--Contenido -->
+        <div class="col-xl-7 pl-0 pl-lg-5 pr-lg-1 d-flex align-items-stretch" data-aos="fade-left" data-aos-delay="100">
+          
+          <div class="content d-flex flex-column justify-content-center">
+
+                <h3>Como Funcionan las Ordenes:</h3>
+                <p>
+                    Primero que todo, que es una orden?: Una orden es nuestra forma para controlar los servicios encargados por los clientes 
+                </p>
+                
+                <p class="mt-3">
+                  Cuando usted entra a la pestana de servicios y contrata alguno, le pedira la fecha y la hora a la que le gustaria recibir el profesional
+                </p>
+                
+                <h5 class="mt-3">Aclaraciones:</h5>
+                <ul>
+                    <li><i class="icofont-tack-pin"></i> Todo servicio debe ser encargado minimo con 72 horas de antelacion</li>
+                    <li><i class="icofont-tack-pin"></i> Toda orden debe ser encargada dentro del horario laboral de nuestros trabajadores. (8:00AM-16:00PM)</li>
+                </ul>
+                <p>
+                  Cuando usted contrata un servicio se crea una "Orden Pendiente", a la espera de que alguno de nuestros profesionales elija el trabajo, cuando esto suceda la orden pasa a ser una "Orden en Proceso".                  
+                </p>
+                
+                <h5 class="mt-2">Para que la orden pase a Finalizada necesita 3 confirmaciones </h5>
+                
+                <ul>
+                  <li><i class="icofont-tack-pin"></i> Usted como cliente debe marcar la orden como finalizada</li>
+                  <li><i class="icofont-tack-pin"></i> El profesional debe marcar la orden como finalizada</li>
+                  <li><i class="icofont-tack-pin"></i> La realizacion del pago por el servicio</li>
+                </ul>
+                
+                <p>
+                  Luego de la orden finalizar, usted como cliente puede dar una valoracion 
+                  al profesional que efectuo el servicio en su domicilio, asi como tambien el profesional puede emitir una valoracion de su comportamiento como cliente
+                </p>
+
+          </div>
+        
+        </div>
+
+      </div>
+
+    </div>
+
+</section>
+
+<!-- =======  Seccion como funciona ======= -->
+
+
+
+
+<!-- ======= Seccion contactanos  ======= -->
+
+<section id="contact" class="contact">
+
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Contacto</h2>
+      <p>Contáctanos</p>
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-lg-4">
+
+          <div class="info">
+
+              <div class="address">
+                <i class="icofont-google-map"></i>
+                <h4>Direccion:</h4>
+                <p>La Habana,Cerro,CasinoDeportivo Calle 13/ Calle Reforma y Calle Canal. #2723</p>
+              </div>
+
+              <div class="email">
+                <i class="icofont-envelope"></i>
+                <h4>Correo Electronico:</h4>
+                <p>livanar00@gmail.com</p>
+              </div>
+
+              <div class="phone">
+                <i class="icofont-phone"></i>
+                <h4>Telefono:</h4>
+                <p>+53 53732781</p>
+              </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-lg-8 mt-5 mt-lg-0">
+
+          <div>
+            <p class="text-center">Cualquier duda,queja,sugerencia, no dude en informarnos a traves de un correo del cual siempre estaremos pendientes.Gracias por su ayuda!</p>
+          </div>
+
+          <form class="email-form">
+        
+              <div class="form-group">
+
+                <input type="text" class="form-control" name="Asunto" id="subject" required placeholder="Subject" maxlength="100" minlength="10" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
+
+              </div>
+              
+              <div class="form-group">
+
+                <textarea class="form-control" name="Mensaje" rows="5" maxlength="400" minlength="10" data-rule="required" data-msg="Please write something for us" placeholder="Message" required></textarea>
+                <div class="validate"></div>
+
+              </div>
+              
+              <div class="mb-3">
+
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+
+              </div>
+              
+              <div class="text-center"><button type="submit">Send Message</button></div>
+
+          </form>
+
+        </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Seccion contactanos -->
+
+{% endblock %}
+
+
+{% block js %}
+<script>
+
+  $("form").on("submit",function(e){
+  
+  e.preventDefault();
+  var parametros = new FormData(this) // la diferencia de esta linea y la de arriba es que esta sirve si el form tiene archivos imagenes
+  
+  enviar_con_ajax(window.location.pathname,parametros,'Esta a punto de enviar un correo al equipo ServiHogar. Desea Continuar?',"modal",function(){
+      Swal.fire({
+      text:'Su correo electronico ha sido envidado satisfactoriamente!',
+      icon: 'success',
+      title: 'Alert!',
+      showConfirmButton: true,
+      onClose:()=>{location.href='{{url_ok}}'}
+    }) 
+
+  })
+
+
+  })
+  
+   
+  //Asignandole un valor a la resegna
+  $('#valoracion').on('click',function(){
+        var x =$('#valoracion').rateit('value')
+        $("input[name='valoracion']").val(x)
+        
+      })
+</script>
+{% endblock %}

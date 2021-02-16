@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>{% block titulo %} {% endblock %}</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+    <!-- Select 2 CSS Files -->
+    <link href="{% static 'Login/lib/select2/dist/css/select2.min.css' %}" rel="stylesheet" />
+
+    <!-- Bootstrap CSS Files -->
+    <link href="{% static 'Login/lib/bootstrap-4/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Jquery Confirm CSS Files -->
+    <link rel="stylesheet" href="{% static 'Login/lib/Jquery-confirm/dist/jquery-confirm.min.css'%}">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'Login/lib/adminLTE/css/adminlte.css'%}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'Login/lib/adminLTE/plugins/fontawesome-free/css/all.min.css' %}">
+
+    <!-- IcoFont -->
+    <link href="{% static 'Login/lib/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+
+    <!-- Sistema de Estrellas css -->
+    <link rel="stylesheet" href="{% static 'Login/lib/Rateit/rateit.css'%}">
+ 
+    {% block css %}
+    {% endblock %}
+</head>
+
+{% block contentPrincipal %}
+<body class="hold-transition login-page">
+
+
+      <div class="login-box" >
+        
+            <div class="login-logo">
+              <a><b>Servi</b>Hogar</a>
+            </div>
+          
+            
+
+            <div class="card" >
+              
+                  <div class="card-body login-card-body">
+                      <p class="login-box-msg">{% block enunciado %} {% endblock %}</p>
+                      {% block content %}
+                      
+                      {% endblock %}
+                  </div>
+          
+            </div>
+
+
+      </div>
+
+      <div class="container" >
+        <p class="text-center parrafoError my-5"></p>
+      </div>
+{% endblock %}
+
+
+
+  <!--Jquery -->
+  <script src="{% static 'Login/lib/jquery/jquery-3.5.1.min.js' %}"></script>
+
+  <!-- Bootstrap JS Files -->
+  <script src="{% static 'Login/lib/bootstrap-4/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!--SweetAlert JS Files -->
+  <script src="{% static 'Login/lib/sweetAlert/sweetaler2.js' %}"></script>
+
+  <!-- Jquery Confirm JS Files -->
+  <script src="{% static 'Login/lib/Jquery-confirm/dist/jquery-confirm.min.js'%}"></script>
+
+  <!-- Mi Funcion Ajax -->
+  <script src="{% static 'Login/js/ajax.js'%}"></script>  
+
+  <!-- AdminLTE App -->
+  <script src="{% static 'Login/lib/adminLTE/js/adminlte.min.js'%}"></script>
+
+  <!-- Select 2 JS Files -->
+  <script src="{% static 'Login/lib/select2/dist/js/select2.min.js' %}"></script>
+  <script src="{% static 'Login/lib/select2/dist/js/i18n/es.js' %}"></script>
+
+<!-- Sistema de Estrellas js  -->
+<script src="{% static 'Login/lib/Rateit/jquery.rateit.js'%}"></script>
+
+
+{% block ajax %}
+
+<script>
+
+    $("form").on("submit",function(e){
+    
+        e.preventDefault();
+        var parametros = new FormData(this) // la diferencia de esta linea y la de arriba es que esta sirve si el form tiene archivos imagenes
+        
+        enviar_con_ajax(window.location.pathname,parametros,'Esta seguro de realizar la siguiente acción?',"parrafo",function(){
+            location.href="{{url_ok}}"
+        })
+        
+    })
+    
+</script>
+
+{% endblock %}
+
+
+{% block js %}
+{% endblock %}
+
+</body>
+
+</html>

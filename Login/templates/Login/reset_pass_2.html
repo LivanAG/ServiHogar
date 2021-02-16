@@ -1,0 +1,35 @@
+{% extends 'Login/baseBasicas.html'%}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+
+{% block titulo %}ServiHogar | Resetear Contraseña {% endblock %}
+
+{% block enunciado %} Cambiar Contraseña {% endblock %}
+
+{% block content %}
+              <form>
+                {% csrf_token %}
+                
+                    {% for i in form %}
+                      <div class="row m-3">
+                            {{i}}
+                      </div>
+                    {% endfor%}
+              
+              
+                    <a href="{{url_reverse}}" class="btn btn-outline-primary ml-3"> Volver</a>
+                    <input type="submit" class="btn btn-outline-primary float-right mr-3" value="Enviar">
+                  
+            
+              </form>
+        
+{% endblock%}    
+
+       
+            
+
+{% block js %}
+{% endblock %}

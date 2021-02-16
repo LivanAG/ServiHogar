@@ -1,0 +1,61 @@
+.TablaEstilo h3{
+    margin: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.TablaEstilo td {
+    font-size: 12px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+  
+.TablaEstilo th {
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.TablaEstilo .dataTables_info{
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.completado{
+ 
+    background-color: black; 
+
+}
+
+.completado td{
+    color: aliceblue;  
+
+}
+
+
+
+
+.TablaEstiloOficina h3{
+    margin: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.TablaEstiloOficina td {
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+  
+.TablaEstiloOficina th {
+    font-size: 17px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.TablaEstiloOficina .dataTables_info{
+    font-size: 12px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}

@@ -1,0 +1,263 @@
+{% extends 'Login/baseBasicas.html'%}
+{% load static %}
+
+
+{% block css %}
+<style>
+  textarea {
+  resize: none;
+
+}
+</style>
+{% endblock %}
+
+
+
+{% block titulo %} ServiHogar | Editar Datos  {% endblock %}
+
+{% block contentPrincipal %}
+<body class="hold-transition register-page">
+
+
+
+<div class="container m-5">
+    <div class="register-logo">
+        <a href="{% url 'Login:index'%}"><b>Editar|</b>ServiHogar</a>
+      </div>
+
+
+    <div class="card p-5 "> 
+
+    
+    <div class="card-body register-card-body">
+        <p class="login-box-msg">Editando datos de usuario</p>
+       
+        <form>
+          {% csrf_token %}
+          
+          
+          {{form.id}}<!--Campo oculto para capturar el id del usuario desde el clean()de mi form -->
+
+            <!--Username -->
+            <div class="input-group mb-3">
+              {{form.username}}
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="icofont-user-alt-3"></span>
+                </div>
+              </div>
+            </div>
+
+            <!--Email -->
+            <div class="input-group mb-3">
+              {{form.email}}
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="icofont-email"></span>
+                </div>
+              </div>
+            </div>
+            
+            
+            <!--First Name -->
+            <div class="input-group mb-3">
+              {{form.first_name}}
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="icofont-paper-clip"></span>
+                </div>
+              </div>
+            </div>
+
+            <!--Last Name -->
+            <div class="input-group mb-3">
+              {{form.last_name}}
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="icofont-paper-clip"></span>
+                </div>
+              </div>
+            </div>
+            
+
+            <!--Direccion -->
+            <div class="container">
+
+                <p class="login-box-msg">Direccion:</p>
+
+                <!--Calles -->
+                <div class="row justify-content-center">
+                  
+                  <div class="col-md-3 ">{{form.callePrincipal}} </div>
+                    
+                  <span style="font-size:25px;font-family: 'Times New Roman';"> / </span> 
+            
+                  <div class="col-md-3 ">{{form.entreCalle1}} </div> 
+                
+                  
+                  <span style="font-size:25px;font-family: 'Times New Roman';" >y / </span>
+                  
+                  <div class="col-md-3 ">{{form.entreCalle2}}</div> 
+            
+                  
+                
+                </div>
+                  
+                <!--No Provincia Municipio -->
+                <div class="row my-4 justify-content-center">
+                  
+                  <div class="col-lg-4 mt-2 ">{{form.numeroDeLaCasa}} </div>
+                  <div class="col-lg-4 mt-2 input-group">{{form.provincia}} </div>
+                  <div class="col-lg-4 mt-2 input-group">{{form.municipio}} </div>
+              
+                </div>
+
+                <p class="login-box-msg my-5">Ejemplo: "(Provincia), (Municipio), Calle (Calle Principal) / Calle (EntreCalle1) y Calle (EntreCalle2)  #:Numero"</p>
+
+            </div>
+            
+         
+            <!--Resegna -->
+          
+            {% if Mensaje %}
+            <div class="form-group mb-5">
+
+              <p class="login-box-msg">Tu opinion sobre la empresa:</p>
+              <div class="row mb-4 justify-content-center"><span class="rateit text-center" id="valoracion" data-rateit-value="{{Valoracion}}" data-rateit-resetable="false"></span></div>
+
+              <div class="container mb-4"> {{form.resegna}} </div>
+              <div class="container"> {{form.valoracion}} </div>
+              
+              
+                       
+            </div>
+          
+            {% endif%}
+
+            <!--Botones -->
+            <div class="row my-3 justify-content-center">
+
+                  <!--Link "Ya tengo una cuenta" -->
+                  <div class="col-4">
+            
+                      <a class="btn btn-outline-primary btn-block " href="{% url 'OficinaCliente:perfil'%}">Volver</a>
+              
+                  </div>
+
+                  <!--Boton Registrar -->
+                  <div class="col-4">
+                    
+                    <button type="submit" class="btn btn-outline-primary btn-block ">Editar</button>
+                  
+                  </div>
+            
+            </div>
+
+
+            <!--Parrafo Error -->
+            <div class="form-group my-5 p-0">
+
+                <p class="parrafoError m-5"></p>   
+
+            </div>
+
+        </form>
+
+     </div>
+
+
+</div>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+{% block js %}
+
+<script>
+
+  var id = $('select[name="provincia"]').val()  
+
+  //Le aplicamos al select provincia la libreria select2
+  $("Select[name='provincia']").select2({
+      language:'es',
+      placeholder: 'Provincia',
+      minimumInputLength: 2,
+  
+  })
+  
+  //En esta funcion capturamos la provincia que se ha seleccionado
+  $('select[name="provincia"]').on('change',function(){
+      id = $(this).val()
+  
+      })
+  
+  
+  //Le aplicamos al select municipio la libreria select2 y configuramos ajax para cargar sus datos
+  $("Select[name='municipio']").select2({
+      language:'es',
+      ajax: {
+  
+                url: window.location.pathname,
+                type: "POST",
+                data: function (params) {
+                            var queryParameters = {
+                            term: params.term,
+                            'id':id,
+                            'action':'autocomplete',
+                            }
+  
+                            return queryParameters;
+                },
+  
+                processResults: function (data) {
+                    return {results: data};
+                },
+            
+                
+            },
+      
+      placeholder: 'Municipio',
+      minimumInputLength: 2,
+  
+  })
+  
+  //Asignandole un valor a la resegna
+  $('#valoracion').on('click',function(){
+        var x =$('#valoracion').rateit('value')
+        $("input[name='valoracion']").val(x)
+        
+      })
+</script>
+
+{% endblock %}
+
+
+
+
+
+{% block ajax %}
+
+<script>
+
+    //Ajax para el envio de datos a nuestra vista
+    $("form").on("submit",function(e){
+
+        e.preventDefault();
+        var parametros = new FormData(this) 
+            parametros.append('action','editar')
+            
+        enviar_con_ajax(window.location.pathname,parametros,'Esta a punto de crear un registro',"parrafo",function(){
+            location.href="{{url_ok}}"
+        })
+
+    })
+
+    
+</script>
+
+{% endblock %}

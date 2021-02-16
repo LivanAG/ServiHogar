@@ -1,0 +1,42 @@
+
+{% extends 'Login/baseBasicas.html'%}
+{% load static %}
+
+{% block css %}
+{% endblock %}
+
+
+{% block titulo %}ServiHogar | Contratar Servicio {% endblock %}
+
+{% block enunciado %} Contratar Servicio de {{servicio.Titulo}} {% endblock %}
+
+
+{% block content %}
+
+<form>
+  {% csrf_token %}
+  
+      <div class="row m-5">
+      
+          <input type="datetime-local" required name="FechaLimite" class="form-control"/>
+
+      </div>
+
+      <div hidden>{{ form.cliente}}</div>
+      <div hidden>{{ form.tipoDeServicio}}</div>
+      <div hidden>{{ form.estado}}</div>
+
+
+      <a href="{{url_reverse}}" class="btn btn-outline-primary ml-3"> Volver</a>
+      <input type="submit" class="btn btn-outline-primary float-right mr-3" value="Enviar">
+
+
+</form>
+        
+{% endblock%}    
+
+
+
+
+{% block js %}
+{% endblock %}

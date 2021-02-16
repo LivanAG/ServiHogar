@@ -1,0 +1,207 @@
+{% extends 'Login/basePrincipal.html'%}
+{% load static %}
+  
+
+
+
+{% block titulo %}{% endblock %}
+
+
+{% block icono %}{% endblock %}
+
+
+{% block cssPrincipal %}
+      
+<!-- Hoja de estilos externa CSS File -->
+<link href="{% static 'Login/OficinaCliente/css/style.css' %}" rel="stylesheet">
+
+
+
+<style>
+  .cantidad_de_notif {
+  font-size: .6rem;
+  font-weight: 300;
+  padding: 2px 4px;
+  position: absolute;
+  left: 10px;
+  top: -5px;
+}
+</style>
+
+{% endblock %}
+  
+
+
+{% block css %}
+{% endblock %}
+
+
+
+
+
+{% block contentPrincipal%}
+
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a >ServiHogar<span>.</span></a></h1>
+  
+       <!-- =======Barra de Navegacion ============================================================ -->
+      <nav class="nav-menu d-none d-lg-block">
+
+        <ul>
+          <li class="nav-item {% if request.path == '/Home/' %}active{% endif %}"><a href="{% url 'OficinaCliente:home' %}">Home</a></li>
+          <li class="nav-item {% if request.path == '/Servicios/' %}active{% endif %}"><a href="{% url 'OficinaCliente:servicios' %}">Servicios</a></li>
+          <li class="nav-item {% if request.path == '/ProfesionalInfo/' %}active{% endif %}"><a href="{% url 'OficinaCliente:prof_info' %}">Quiero ser un Profesional</a></li>
+          <li class="nav-item {% if request.path == '/Perfil/' %}active{% endif %}"><a href="{% url 'OficinaCliente:perfil' %}">Perfil</a></li>
+          <li class="nav-item {% if request.path == '/Buzon/' %}active{% endif %}"> <a href="{% url 'OficinaCliente:buzon' %}"><i class="far fa-bell "></i> <span id="contador_notificaciones" class="badge badge-warning cantidad_de_notif"></span> </a></li>
+
+        </ul>
+
+      </nav>
+      <!-- =======Barra de Navegacion ============================================================ -->
+
+      <a href="{% url 'Login:logout'%}" class="get-started-btn scrollto">Cerrar Sesion</a>
+
+    </div>
+
+  </header><!-- End Header -->
+
+  {% block banner%}
+  {%endblock%}
+
+  <main id="main">
+
+   
+    <!-- ======= Breadcrumbs ======= -->
+    {% block breadcrumbs %}
+    <section class="breadcrumbs">
+
+      <div class="container">
+
+          <div class="d-flex justify-content-between align-items-center">
+            
+            <h2>{{breadcrumbs}}</h2>
+            
+          </div>
+
+      </div>
+
+    </section><!-- End Breadcrumbs -->
+    {%endblock%}
+
+
+  </main><!-- End #main -->
+  
+
+  {% block content%}
+  {% endblock %}
+
+
+  
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+
+    <div class="footer-top">
+
+      <div class="container">
+
+        <div class="row">
+
+            <!-- =======Info Empresa ============================================================ -->
+            <div class="col-8 footer-info">
+              <h3>ServiHogar<span>.</span></h3>
+              <p>
+                La Habana,Cerro,Casino Deportivo Calle 13/ Calle 11 y Calle canal #2723<br>
+                
+                
+                <strong>Phone:</strong> +53 53732781<br>
+                <strong>Email:</strong> livanar00@gmail.com<br>
+              </p>
+              
+      
+
+            </div>
+            
+            <!-- =======Links Redes Sociales ============================================================ -->
+            <div class="col-lg-3 col-md-6 ">
+
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+                <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+                <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="icofont-skype"></i></a>
+                <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
+              </div>
+            </div>
+         
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="container">
+
+      <div class="copyright">
+        &copy; Copyright <strong><span>ServiHogar</span></strong>. All Rights Reserved
+      </div>
+
+    </div>
+
+
+  </footer><!-- End Footer -->
+  
+ 
+{% endblock %}
+
+  
+ 
+
+
+
+
+
+  {% block jsPrincipal %}
+    <!-- Template Main JS File -->
+    <script src="{% static 'Login/OficinaCliente/js/main.js' %}"></script>
+
+    
+
+  
+<script>
+  const revisionSocket = new WebSocket('ws://'+ window.location.host + '/ws/revision/')
+
+
+  revisionSocket.onclose = function(e){
+    console.error('Tumbaron el catao alla arriba');
+  }
+
+  revisionSocket.onmessage = function(e){
+    data = JSON.parse(e.data)
+    if(data['Cantidad_de_Notificaciones'] == '0'){
+      $("#contador_notificaciones").hide()
+    }
+    else{
+      $("#contador_notificaciones").show()
+      $("#contador_notificaciones").html(data['Cantidad_de_Notificaciones'])
+    }
+   
+  
+  }
+
+
+</script>
+  {% endblock %}
+  
+
+
+  {% block js %}
+
+  {% endblock %}
+

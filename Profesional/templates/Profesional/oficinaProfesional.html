@@ -1,0 +1,62 @@
+{% extends "Profesional/base.html" %}
+{% load static%}
+
+
+{% block titulo %}ServiHogar | Oficina Profesional {% endblock %}
+{% block css %}
+
+<link href="{% static 'Login/Profesional/css/OficinaProfesionalCss.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+
+{% block content%}
+ 
+<section class="container TablaEstiloOficina">
+
+
+  <div class="card">
+
+    <div class="card-header p-2">
+
+        <h3 id="Encabezado"> Trabajos Disponibles:</h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered" id="dataTrabajos">
+
+          <thead>
+
+            <tr class="enunciadoTabla">
+              <th  scope="col" style="width: 1%; ">id</th>
+              <th scope="col" style="width: 13%; ">Tipo de Servicio</th>
+              <th  scope="col" style="width: 15%;">Fecha De Ejecucion</th>
+              <th scope="col" style="width: 15%;">Nombre y Apellido</th>
+              <th  scope="col" style="width: 30%;">Direccion </th>
+              <th scope="col" style="width: 12%;">Tomar Orden</th>
+            </tr>
+
+          </thead>
+
+        </table>
+
+    </div>
+
+  </div>
+
+
+</section>     
+
+{% endblock %}
+
+
+
+
+{% block js %}
+  
+<!-- Mi Funcion Ajax -->
+<script src="{% static 'Login/Profesional/js/listado_trabajos.js'%}"></script>
+
+{% endblock %}

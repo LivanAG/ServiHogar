@@ -1,0 +1,41 @@
+.lab{
+    font-size: 20px;
+    font-family: sans-serif;
+    
+    font-weight: bold;
+}
+
+.cont{
+    font-size: 17px;
+    font-family: sans-serif;
+    
+
+}
+
+
+.Enunciado {
+  font-weight: 700;
+  font-size: 28px;
+  font-family: "Poppins", sans-serif !important;
+}
+
+textarea {
+  resize: none;
+
+}
+
+.resegna { 
+
+  background: linear-gradient(rgba(7, 4, 3, 0.651),rgba(7, 4, 3, 0.651)),url("../img/testimonials-bg.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.resegna{
+  text-align: center;
+  color: #fff;
+}
+
+

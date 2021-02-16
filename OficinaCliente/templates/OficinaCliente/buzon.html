@@ -1,0 +1,91 @@
+{% extends "OficinaCliente/base.html" %}
+{% load static%}
+
+{% block css %}
+
+<style>
+
+  .Sinleer{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bolder;
+    font-style: italic;
+  }
+
+  #Notificaciones_info{
+    margin-left: 20px;
+  }
+
+  #Notificaciones_paginate{
+    margin-right: 20px;
+  }
+</style>
+
+{% endblock %}
+
+{% block titulo %}ServiHogar | Buzon {% endblock %}
+
+{% block banner%}
+
+
+
+{%endblock%}
+
+
+
+
+
+{% block content%}
+
+
+  <div class="container my-5">
+    <div class="card card-primary card-outline">
+      <div class="card-header">
+        <h3 class="card-title">Inbox</h3>
+
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body p-0">
+        
+      
+        <div class="TablaEstilo mt-2">
+
+        <table class="table table-hover" id="Notificaciones">
+            
+            <thead>
+                <tr class="enunciadoTabla">
+
+                <th scope="col" >Leer</th>
+                <th scope="col" >Remitente</th>
+                <th   scope="col" >Titulo</th>
+                <th  scope="col" >Fecha de recibido</th>
+
+                </tr>
+            </thead>
+
+        </table>
+       
+
+      </div> 
+      
+            
+            
+
+
+        <!-- /.mail-box-messages -->
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer p-0">
+        <div class="mailbox-controls">
+    
+        </div>
+      </div>
+    </div>
+    <!-- /.card -->
+  </div>
+
+{% endblock %}
+
+
+{% block js %}
+<script src="{% static 'Login/OficinaCliente/js/buzon_scripts.js' %}"></script>
+{% endblock %}

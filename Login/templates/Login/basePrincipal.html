@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static%}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+  <title>{% block titulo %} {% endblock %}</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+    <!-- Icono de la pagina -->
+    {% block icono %}<link href="{% static 'Login/Login/img/favicon.png' %}" rel="icon">{% endblock %}
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Bootstrap CSS Files -->
+    <link href="{% static 'Login/lib/bootstrap-4/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'Login/lib/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+    <link href="{% static 'Login/lib/vendor/venobox/venobox.css' %}" rel="stylesheet">
+    <link href="{% static 'Login/lib/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'Login/lib/vendor/aos/aos.css' %}" rel="stylesheet">
+
+    <!-- Jquery Confirm -->
+    <link rel="stylesheet" href="{% static 'Login/lib/Jquery-confirm/dist/jquery-confirm.min.css'%}">
+
+    <!--  DataTable css -->
+    <link href="{% static 'Login/lib/DataTables/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+    <link href="{% static 'Login/lib/DataTables/css/bootstrap.css' %}" rel="stylesheet">
+
+
+    <!-- Mi Estilo de Tablas-->
+    <link href="{% static 'Login/Profesional/css/estiloTablaCss.css' %}" rel="stylesheet">
+
+    <!-- Sistema de Estrellas css -->
+    <link rel="stylesheet" href="{% static 'Login/lib/Rateit/rateit.css'%}">
+
+  
+    <!-- Iconos Bootstrap-->
+    <link href="{% static 'Login/lib/icons-1.3.0/font/bootstrap-icons.css' %}" rel="stylesheet">
+
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'Login/lib/adminLTE/plugins/fontawesome-free/css/all.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'Login/lib/adminLTE/css/adminlte.min.css'%}">
+
+
+  {% block cssPrincipal %}
+  {% endblock %}
+  
+  {% block css %}
+  {% endblock %}
+
+
+
+</head>
+
+<body>
+
+
+    {% block contentPrincipal%}
+  
+  
+
+    {% endblock %}
+
+  <a href="#" class="back-to-top"><i class="icofont-arrow-up"></i></a>
+  <div id="preloader"></div>
+  
+  
+  <!--Jquery -->
+  <script src="{% static 'Login/lib/jquery/jquery-3.5.1.min.js' %}"></script>
+
+  <!-- Bootstrap JS Files -->
+  <script src="{% static 'Login/lib/bootstrap-4/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!--SweetAlert JS File -->
+    <script src="{% static 'Login/lib/sweetAlert/sweetaler2.js' %}"></script>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'Login/lib/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'Login/lib/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'Login/lib/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'Login/lib/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'Login/lib/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'Login/lib/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'Login/lib/vendor/aos/aos.js' %}"></script>
+
+    <!-- DataTables JS File -->
+  <script src="{% static 'Login/lib/DataTables/js/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'Login/lib/DataTables/js/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'Login/lib/DataTables/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'Login/lib/DataTables/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+
+    <!-- Jquery Confirm -->
+    <script src="{% static 'Login/lib/Jquery-confirm/dist/jquery-confirm.min.js'%}"></script>
+
+ <!-- Mi Funcion Ajax -->
+ <script src="{% static 'Login/js/ajax.js'%}"></script>
+
+  <!-- Mi Funcion Revision -->
+  <script src="{% static 'Login/js/revision.js'%}"></script>
+
+   <!-- Sistema de Estrellas js  -->
+   <script src="{% static 'Login/lib/Rateit/jquery.rateit.js'%}"></script>
+
+  {% block jsPrincipal %}
+  {% endblock %}
+  
+  {% block js %}
+  {% endblock %}
+
+
+
+</body>
+
+</html>
