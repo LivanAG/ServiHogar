@@ -11,7 +11,7 @@ import os
 
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter,URLRouter
-from channels.auth import AuthMiddlewareStack
+#from channels.auth import AuthMiddlewareStack
 import OficinaCliente.routing  
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ServiHogar2.settings')
@@ -20,13 +20,13 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ServiHogar2.settings')
 application = ProtocolTypeRouter({
     'http':get_asgi_application(),
 
-    'websocket':AuthMiddlewareStack(
+    'websocket':
         
         URLRouter(
             OficinaCliente.routing.web_sockets_urlpatterns
             )
             
-        )
+        
 })
 
 
