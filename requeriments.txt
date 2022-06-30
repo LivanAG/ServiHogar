@@ -1,3 +1,7 @@
+
+django-heroku
+channels
+daphne
 appdirs==1.4.4
 asgiref==3.2.10
 astroid==2.4.2

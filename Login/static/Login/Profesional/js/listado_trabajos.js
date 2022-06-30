@@ -65,15 +65,11 @@ function CargarTabla(){
     
     columnDefs:[
        
-        
-        
         {
             targets: [3],
             class: '',
             
             render:function(data,type,row){
-               
-                
                 return  row.nombre + ' ' + row.apellido;
                 //return x
 
@@ -128,6 +124,9 @@ function CargarTabla(){
 
 
 }
+
+
+
 
 $(function(){
 

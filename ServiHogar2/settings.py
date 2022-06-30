@@ -9,7 +9,9 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+
 import os
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'i380inzh-77r5zv4&s8hdle%)x9qyp^w760*#6a2_@9em&x^th'
 #SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False  
 #DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://servihogar.herokuapp.com/"]
 
 
 # Application definition
@@ -158,11 +160,15 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST="smtp.gmail.com"
 EMAIL_USE_TLS=True
 EMAIL_PORT = 587
-EMAIL_HOST_USER="frankaranda1960@gmail.com"
-EMAIL_HOST_PASSWORD="aranda@1960"
+EMAIL_HOST_USER="marcelosking00@gmail.com"
+EMAIL_HOST_PASSWORD="Ada15251525"
 DOMAIN = ''
 
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Activa Django-Heroku.
+django_heroku.settings(locals())
 
 
 
