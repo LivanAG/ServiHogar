@@ -1,4 +1,4 @@
-
+Django==3.1.2
 django-heroku
 channels
 daphne
@@ -13,7 +13,6 @@ confusable-homoglyphs==3.2.0
 constantly==15.1.0
 cryptography==3.3.1
 distlib==0.3.1
-Django==3.1.2
 django-bootstrap-modal-forms==2.0.1
 django-crispy-forms==1.9.2
 django-registration==3.1.1
